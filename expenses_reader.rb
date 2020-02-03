@@ -9,7 +9,12 @@ abort 'Файл my_expenses.xml не найден!' unless File.exist?(file_name
 file = File.new(file_name)
 
 # Создаем новый XML объект из файла file
-doc = REXML::Document.new(file)
+begin
+  doc = REXML::Document.new(file)
+rescue REXML::ParseException => e
+  puts 'XML файл поврежден!'
+  abort e.message
+end
 
 # траты по дням
 amount_by_day = {}
