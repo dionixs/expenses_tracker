@@ -1,7 +1,7 @@
 require 'rexml/document' # подключаем парсер
 require 'date'
 
-current_path = File.dirname(__FILE__ )
+current_path = File.dirname(__FILE__)
 file_name = current_path + '/my_expenses.xml'
 
 abort 'Файл my_expenses.xml не найден!' unless File.exist?(file_name)
@@ -12,7 +12,7 @@ file = File.new(file_name)
 doc = REXML::Document.new(file)
 
 # траты по дням
-amount_by_day = Hash.new
+amount_by_day = {}
 
 doc.elements.each('expenses/expense') do |item|
   loss_sum = item.attributes['amount'].to_i
@@ -27,9 +27,9 @@ end
 file.close
 
 # сумма расходов за каждый месяц
-sum_by_month = Hash.new
+sum_by_month = {}
 
-current_month = amount_by_day.keys.sort[0].strftime('%B %Y')
+current_month = amount_by_day.keys.min.strftime('%B %Y')
 
 amount_by_day.keys.sort.each do |key|
   sum_by_month[key.strftime('%B %Y')] ||= 0
@@ -51,7 +51,3 @@ amount_by_day.keys.sort.each do |key|
   # выводим расходы за конкретный день
   puts "\t#{key.day}: #{amount_by_day[key]} р."
 end
-
-
-
-
