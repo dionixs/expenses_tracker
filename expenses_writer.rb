@@ -29,7 +29,11 @@ date_input = STDIN.gets.strip
 expense_date = if date_input == ''
                  Date.today
                else
-                 Date.parse(date_input)
+                 begin
+                   Date.parse(date_input)
+                 rescue ArgumentError
+                   Date.today
+                 end
                end
 
 puts 'В какую категорию занести трату?'
