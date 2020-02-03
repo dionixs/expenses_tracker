@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<expenses>
+  <expense date="05.09.2019" category="Образование" amount="900">
+    Книжка по Ruby on Rails
+  </expense>
+
+  <expense date="20.11.2019" category="Клавиатуры и мыши" amount="1300">
+    Компьютерная мышь
+  </expense>
+
+  <expense date="12.12.2019" category="Образование" amount="600">
+    Книжка Грокаем алгоритмы
+  </expense>
+</expenses>
